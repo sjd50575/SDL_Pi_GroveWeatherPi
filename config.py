@@ -20,7 +20,7 @@ textnotifyAddress = "yourphonenumber@yourprovider"
 
 #MySQL Logging and Password Information
 
-enable_MySQL_Logging = True
+enable_MySQL_Logging = False
 MySQL_Password = "password"
 
 # modify this IP to enable WLAN operating detection  - search for WLAN_check in GroveWeatherPi.py
@@ -32,6 +32,14 @@ PingableRouterAddress = "192.168.1.1"
 WeatherUnderground_Present = False
 WeatherUnderground_StationID = "KWXXXXX"
 WeatherUnderground_StationKey = "YYYYYYY"
+
+############
+# Blynk configuration
+############
+
+USEBLYNK = False 
+BLYNK_AUTH = 'xxxxx'
+BLYNK_URL = 'http://blynk-cloud.com/'
 
 
 
@@ -56,8 +64,13 @@ AM2315_Present = False
 ADS1015_Present = False
 ADS1115_Present = False
 OLED_Present = False
+OLED_Originally_Present = False
 WXLink_Present = False
 Sunlight_Preset = False
+
+# set Sunlight High Gain (indoors - 1) or Low Gain (outdoors - 0)
+Sunlight_Gain = 0
+
 
 # if the WXLink has stopped transmitting, == False
 WXLink_Data_Fresh = False

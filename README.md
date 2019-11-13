@@ -2,10 +2,35 @@ GroveWeatherPi Libraries and Example for Raspberry Pi Solar Powered Weather Stat
 
 Supports SwitchDoc Labs WeatherRack WeatherBoard (WeatherPiArduino V2 and above)
 
-Version 2.99 
+Version 3.17 
 
 http://www.switchdoc.com/
 
+June 7, 2019 - Version 3.17 Improved AM2315 reliablity - fixed 0 CRC error
+
+March 30, 2019 - Version 3.16 Improved AM2315 reliablity - added support for Grove PowerSave 
+
+February 8, 2019 - Version 3.15  Increase Max Retries on AM2315 to 10 per suggestion
+
+January 12, 2019 - Version 3.14  Fixed am2315 not assigned error 
+
+January 10, 2019 - Version 3.13  Added "None" detection to AM2315, added Try, Except loop on AM2315 read 
+
+December 19, 2018 - Version 3.12  Improved Blynk reliability
+
+November 28, 2018 - Version 3.11  Further improved AM2315, fixed startup glitch with English/Metric units, fixed Rain Status
+
+November 26, 2018 - Version 3.10 Added Blynk App support and changed sampling method to remove I2C errors - fixed AM2315 humidity/temperature mixup
+
+November 14, 2018 - Version 3.04 Added CRC checking to the  AM2315 Python Driver. 
+
+November 14, 2018 - Version 3.03 Added New AM2315 Python Driver. removed tentacle_pi
+
+October 1, 2018 - Improved README.md install instructions
+
+June 19, 2018 - Version 3.02 Fixed SI1145 Gain (made for outdoors) Adjusted Lux readings for outdoor sunlight rough calibration
+
+May 30, 2018 - Version 3.01 Fixed MySQL Garding, bad read issues with SI1145, gave fix for Mising BBIO Library in README.md
 
 November 18, 2017 - Version 2.99 Adjusted Lightning Detector detection for 0x02 or 0x03 
 
@@ -63,6 +88,7 @@ sudo apt-get install python-smbus
 
 Install this next:
 
+
 git clone https://github.com/adafruit/Adafruit_Python_PureIO.git<BR>
 cd Adafruit_Python_PureIO<BR>
 sudo python setup.py install<BR>
@@ -73,7 +99,6 @@ sudo apt-get install python-pip
 
 sudo apt-get install libi2c-dev
 
-sudo pip install tentacle_pi
 
 #Installing apscheduler
 
@@ -83,14 +108,19 @@ sudo pip install setuptools --upgrade  <BR>
 sudo pip install apscheduler <BR>
 
 
-----------------
-Note some configurations of Raspberry Pi software requres the following:
-----------------
+----------------<BR>
+Note some configurations of Raspberry Pi software requres the following:<BR>
+It won't hurt to do this in any case.<BR>
+----------------<BR>
 <pre>
 sudo apt-get update
 sudo apt-get install build-essential python-pip python-dev python-smbus git
 git clone https://github.com/adafruit/Adafruit_Python_GPIO.git
 cd Adafruit_Python_GPIO
+sudo python setup.py install
+cd ..
+cd SDL_Pi_GroveWeatherPi
+cd Adafruit_Python_SSD1306
 sudo python setup.py install
 </pre>
 SwitchDocLabs Documentation for WeatherRack/WeatherPiArduino under products on: store.switchdoc.com
@@ -114,7 +144,7 @@ Use phpmyadmin or sql command lines to add the included SQL file to your MySQL d
 Note:  If the database has been updated, run the example below to update your database.   The current contents will not be lost.
 
 
-example:   mysql -u root -p GroveWeatherPi< GroveWeatherPi.sql
+example:   sudo mysql -u root -p GroveWeatherPi< GroveWeatherPi.sql
 
 user:  root
 
@@ -126,8 +156,5 @@ NOTE:
 
 If you have a WXLink wireless transmitter installed, the software assumes you have connected your AM2315 outdoor temp/humidity sensor to the WXLink.  If you put another AM2315 on your local system, it will use those values instead of the WXLink values
 
-----------
-
-----------
 
 
